@@ -23,9 +23,17 @@ namespace BrowserLauncher
         private List<String> environments { get; set; }
         private List<String> countries { get; set; }
         private List<String> parameters { get; set; }
-        
+
+        private List<String> queue { get; set; }
+
         private String strAppDir { get; set; }
         private const String ONLINE = "ONLINE";
+
+        public class Preset
+        {
+            public string path { get; set; }
+            public int index { get; set; }
+        }
 
         public frmMain()
         {
@@ -112,6 +120,7 @@ namespace BrowserLauncher
             //this.cbParameters.SuggestListOrderRule = null;
             this.cbParameters.TabIndex = 13;
             this.cbParameters.TextChanged += new System.EventHandler(this.cbParameters_TextChanged);
+            this.cbParameters.DropDown += new System.EventHandler(this.AdjustWidthComboBox_DropDown);
             this.Controls.Add(this.cbParameters);
             #endregion
         }
@@ -419,7 +428,15 @@ namespace BrowserLauncher
             }
         }
 
-        private void Launch()
+        private void Reset()
+        {
+            btnGo.Enabled = false;
+            goMenu.Enabled = false;
+            btnSave.Enabled = false;
+            btnDelete.Enabled = false;
+        }
+
+        private void Run()
         {
             if (browsers.Count == 0 || cbBrowser.SelectedIndex == -1)
             {
@@ -472,6 +489,41 @@ namespace BrowserLauncher
             catch (Win32Exception)
             {
                 MessageBox.Show("File \"" + browserTarget.Substring(browserTarget.LastIndexOf("\\") + 1) + "\" not found: unable to start this browser.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void Launch()
+        {
+            string filepath = strAppDir + "\\config\\";
+            List<Preset> q = new List<Preset>();
+            if (lvPresets.SelectedItems.Count > 1)
+            {
+                foreach (ListViewItem currentItem in lvPresets.SelectedItems)
+                {
+                    string queueItem = filepath + currentItem.Text + ".preset";
+                    Preset p = new Preset();
+                    p.path = queueItem;
+                    p.index = currentItem.Index;
+                    q.Add(p);
+                }
+                foreach (Preset p in q)
+                {
+                    LoadPreset(p.path);
+                    Run();
+                }
+                Reload();
+                foreach (Preset p in q)
+                {
+                    lvPresets.Items[p.index].Selected = true;
+                    lvPresets.Items[p.index].Focused = true;
+                }
+                lvPresets.Select();
+                btnGo.Enabled = true;
+                btnDelete.Enabled = false;
+            }
+            else
+            {
+                Run();
             }
         }
 
@@ -672,10 +724,7 @@ namespace BrowserLauncher
 
         private void btnReset_Click(object sender, EventArgs e)
         {
-            btnGo.Enabled = false;
-            goMenu.Enabled = false;
-            btnSave.Enabled = false;
-            btnDelete.Enabled = false;
+            Reset();
             Reload();
         }
 
@@ -1052,6 +1101,29 @@ namespace BrowserLauncher
                     LoadPresets();
                 }
             }
+        }
+
+        private void AdjustWidthComboBox_DropDown(object sender, System.EventArgs e)
+        {
+            ComboBox senderComboBox = (ComboBox)sender;
+            int width = senderComboBox.DropDownWidth;
+            Graphics g = senderComboBox.CreateGraphics();
+            Font font = senderComboBox.Font;
+            int vertScrollBarWidth =
+                (senderComboBox.Items.Count > senderComboBox.MaxDropDownItems)
+                ? SystemInformation.VerticalScrollBarWidth : 0;
+
+            int newWidth;
+            foreach (string s in ((ComboBox)sender).Items)
+            {
+                newWidth = (int)g.MeasureString(s, font).Width
+                    + vertScrollBarWidth;
+                if (width < newWidth)
+                {
+                    width = newWidth;
+                }
+            }
+            senderComboBox.DropDownWidth = width;
         }
     }
 }

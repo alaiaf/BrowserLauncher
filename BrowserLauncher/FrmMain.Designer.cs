@@ -365,7 +365,6 @@ namespace BrowserLauncher
             this.lvPresets.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.lvPresets.GridLines = true;
             this.lvPresets.Location = new System.Drawing.Point(0, 21);
-            this.lvPresets.MultiSelect = false;
             this.lvPresets.Name = "lvPresets";
             this.lvPresets.ShowItemToolTips = true;
             this.lvPresets.Size = new System.Drawing.Size(319, 111);
