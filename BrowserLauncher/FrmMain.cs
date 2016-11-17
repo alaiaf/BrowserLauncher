@@ -125,6 +125,44 @@ namespace BrowserLauncher
             #endregion
         }
 
+        private void EnableControls()
+        {
+            cbBrowser.Enabled = true;
+            btnEditBrowsers.Enabled = true;
+            cbStore.Enabled = true;
+            btnEditStores.Enabled = true;
+            cbEnvironment.Enabled = true;
+            btnEditEnvironments.Enabled = true;
+            cbCountry.Enabled = true;
+            btnEditCountries.Enabled = true;
+            btnCancel.Enabled = true;
+            btnAddCountry.Enabled = true;
+            cbSorting.Enabled = true;
+            cbParameters.Enabled = true;
+            btnEditParameters.Enabled = true;
+            rbHttp.Enabled = true;
+            rbHttps.Enabled = true;
+        }
+
+        private void DisableControls()
+        {
+            cbBrowser.Enabled = false;
+            btnEditBrowsers.Enabled = false;
+            cbStore.Enabled = false;
+            btnEditStores.Enabled = false;
+            cbEnvironment.Enabled = false;
+            btnEditEnvironments.Enabled = false;
+            cbCountry.Enabled = false;
+            btnEditCountries.Enabled = false;
+            btnCancel.Enabled = false;
+            btnAddCountry.Enabled = false;
+            cbSorting.Enabled = false;
+            cbParameters.Enabled = false;
+            btnEditParameters.Enabled = false;
+            rbHttp.Enabled = false;
+            rbHttps.Enabled = false;
+        }
+
         private void Init()
         {
             cbBrowser.ResetText();
@@ -656,7 +694,7 @@ namespace BrowserLauncher
         {
             try
             {
-                Reload();
+                ShowDefaultView();
                 string[] presets = File.ReadAllLines(filename);
                 int count = 0;
                 foreach (string preset in presets)
@@ -724,6 +762,7 @@ namespace BrowserLauncher
 
         private void btnReset_Click(object sender, EventArgs e)
         {
+            EnableControls();
             Reset();
             Reload();
         }
@@ -1045,9 +1084,11 @@ namespace BrowserLauncher
                 LoadPreset(filpath + lvPresets.SelectedItems[0].Text + ".preset");
                 lvPresets.Items[count].Selected = true;
                 lvPresets.EnsureVisible(count);
+                EnableControls();
             }
             else
             {
+                DisableControls();
                 btnDelete.Enabled = false;
             }
         }
