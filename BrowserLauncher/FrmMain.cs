@@ -135,6 +135,8 @@ namespace BrowserLauncher
             btnEditEnvironments.Enabled = true;
             cbCountry.Enabled = true;
             btnEditCountries.Enabled = true;
+            btnAddNewCountry.Enabled = true;
+            txtNewCountry.Enabled = true;
             btnCancel.Enabled = true;
             btnAddCountry.Enabled = true;
             cbSorting.Enabled = true;
@@ -154,6 +156,8 @@ namespace BrowserLauncher
             btnEditEnvironments.Enabled = false;
             cbCountry.Enabled = false;
             btnEditCountries.Enabled = false;
+            btnAddNewCountry.Enabled = false;
+            txtNewCountry.Enabled = false;
             btnCancel.Enabled = false;
             btnAddCountry.Enabled = false;
             cbSorting.Enabled = false;
