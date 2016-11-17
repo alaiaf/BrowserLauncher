@@ -144,6 +144,8 @@ namespace BrowserLauncher
             btnEditParameters.Enabled = true;
             rbHttp.Enabled = true;
             rbHttps.Enabled = true;
+            btnSave.Enabled = true;
+            btnPresets.Enabled = true;
         }
 
         private void DisableControls()
@@ -165,6 +167,8 @@ namespace BrowserLauncher
             btnEditParameters.Enabled = false;
             rbHttp.Enabled = false;
             rbHttps.Enabled = false;
+            btnSave.Enabled = false;
+            btnPresets.Enabled = false;
         }
 
         private void Init()
@@ -987,6 +991,8 @@ namespace BrowserLauncher
         {
             if (openFile.ShowDialog() == DialogResult.OK)
             {
+                EnableControls();
+                Reload();
                 LoadPreset(openFile.FileName);
             }
         }
@@ -1079,6 +1085,7 @@ namespace BrowserLauncher
             if (lvPresets.SelectedItems.Count == 1)
             {
                 btnDelete.Enabled = true;
+                EnableControls();
                 int count = 0;
                 for (int i = count; i < lvPresets.Items.Count; i++)
                 {
@@ -1088,7 +1095,6 @@ namespace BrowserLauncher
                 LoadPreset(filpath + lvPresets.SelectedItems[0].Text + ".preset");
                 lvPresets.Items[count].Selected = true;
                 lvPresets.EnsureVisible(count);
-                EnableControls();
             }
             else
             {
