@@ -127,12 +127,16 @@ namespace BrowserLauncher
 
         private void EnableControls()
         {
+            lblBrowser.Enabled = true;
             cbBrowser.Enabled = true;
             btnEditBrowsers.Enabled = true;
+            lblStore.Enabled = true;
             cbStore.Enabled = true;
             btnEditStores.Enabled = true;
+            lblEnvironment.Enabled = true;
             cbEnvironment.Enabled = true;
             btnEditEnvironments.Enabled = true;
+            lblCountry.Enabled = true;
             cbCountry.Enabled = true;
             btnEditCountries.Enabled = true;
             btnAddNewCountry.Enabled = true;
@@ -140,6 +144,7 @@ namespace BrowserLauncher
             btnCancel.Enabled = true;
             btnAddCountry.Enabled = true;
             cbSorting.Enabled = true;
+            lblParameters.Enabled = true;
             cbParameters.Enabled = true;
             btnEditParameters.Enabled = true;
             rbHttp.Enabled = true;
@@ -150,12 +155,16 @@ namespace BrowserLauncher
 
         private void DisableControls()
         {
+            lblBrowser.Enabled = false;
             cbBrowser.Enabled = false;
             btnEditBrowsers.Enabled = false;
+            lblStore.Enabled = false;
             cbStore.Enabled = false;
             btnEditStores.Enabled = false;
+            lblEnvironment.Enabled = false;
             cbEnvironment.Enabled = false;
             btnEditEnvironments.Enabled = false;
+            lblCountry.Enabled = false;
             cbCountry.Enabled = false;
             btnEditCountries.Enabled = false;
             btnAddNewCountry.Enabled = false;
@@ -163,6 +172,7 @@ namespace BrowserLauncher
             btnCancel.Enabled = false;
             btnAddCountry.Enabled = false;
             cbSorting.Enabled = false;
+            lblParameters.Enabled = false;
             cbParameters.Enabled = false;
             btnEditParameters.Enabled = false;
             rbHttp.Enabled = false;
