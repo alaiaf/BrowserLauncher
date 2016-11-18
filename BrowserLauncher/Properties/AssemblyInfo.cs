@@ -5,11 +5,11 @@ using System.Runtime.InteropServices;
 // General Information about an assembly is controlled through the following 
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("BrowserLauncher")]
-[assembly: AssemblyDescription("")]
+[assembly: AssemblyTitle("Browser Launcher")]
+[assembly: AssemblyDescription("Browser Launcher is a tool that allows the testers to speed up the testing process by creating, saving and running a series of combinations of browser/store/environment/country.")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("Yoox Net-A-Porter Group S.p.A.")]
-[assembly: AssemblyProduct("BrowserStarter")]
+[assembly: AssemblyProduct("Browser Launcher")]
 [assembly: AssemblyCopyright("Francesco Alaia")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
@@ -32,5 +32,5 @@ using System.Runtime.InteropServices;
 // You can specify all the values or you can default the Build and Revision Numbers 
 // by using the '*' as shown below:
 // [assembly: AssemblyVersion("1.0.*")]
-[assembly: AssemblyVersion("1.2.2.0")]
-[assembly: AssemblyFileVersion("1.2.2.0")]
+[assembly: AssemblyVersion("1.3.0.0")]
+[assembly: AssemblyFileVersion("1.3.0.0")]

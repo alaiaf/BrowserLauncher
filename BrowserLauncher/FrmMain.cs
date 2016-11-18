@@ -17,7 +17,7 @@ namespace BrowserLauncher
     public partial class frmMain : Form
     {
         private SuggestComboBox cbBrowser, cbStore, cbEnvironment, cbCountry, cbParameters;
-        
+
         private List<Browser> browsers { get; set; }
         private List<Store> stores { get; set; }
         private List<String> environments { get; set; }
@@ -150,6 +150,7 @@ namespace BrowserLauncher
             rbHttp.Enabled = true;
             rbHttps.Enabled = true;
             btnSave.Enabled = true;
+            savePresetMenu.Enabled = true;
             btnPresets.Enabled = true;
         }
 
@@ -178,6 +179,7 @@ namespace BrowserLauncher
             rbHttp.Enabled = false;
             rbHttps.Enabled = false;
             btnSave.Enabled = false;
+            savePresetMenu.Enabled = false;
             btnPresets.Enabled = false;
         }
 
@@ -612,7 +614,7 @@ namespace BrowserLauncher
             btnAddCountry.Enabled = true;
             btnEditCountries.Enabled = true;
         }
-        
+
         #region Preset Management
         private void LoadPresets()
         {
@@ -821,7 +823,7 @@ namespace BrowserLauncher
             cbCountry.SelectedIndex = -1;
             LoadCountries(false);
             ShowDefaultView();
-            
+
         }
 
         private void lblEnvironment_Click(object sender, EventArgs e)
@@ -1018,10 +1020,8 @@ namespace BrowserLauncher
 
         private void resetMenu_Click(object sender, EventArgs e)
         {
-            btnGo.Enabled = false;
-            goMenu.Enabled = false;
-            btnSave.Enabled = false;
-            btnDelete.Enabled = false;
+            EnableControls();
+            Reset();
             Reload();
         }
 
@@ -1076,7 +1076,7 @@ namespace BrowserLauncher
         {
             AddNewParameter();
         }
-        
+
         private void lvPresets_SelectedIndexChanged(object sender, EventArgs e)
         {
             if (lvPresets.SelectedItems.Count < 1)
