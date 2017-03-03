@@ -185,16 +185,16 @@ namespace BrowserLauncher
 
         private void Init()
         {
-            cbBrowser.ResetText();
             cbBrowser.SelectedIndex = -1;
-            cbStore.ResetText();
+            cbBrowser.ResetText();
             cbStore.SelectedIndex = -1;
-            cbEnvironment.ResetText();
+            cbStore.ResetText();
             cbEnvironment.SelectedIndex = -1;
-            cbCountry.ResetText();
+            cbEnvironment.ResetText();
             cbCountry.SelectedIndex = -1;
-            cbParameters.ResetText();
+            cbCountry.ResetText();
             cbParameters.SelectedIndex = -1;
+            cbParameters.ResetText();
             LoadBrowsers();
             LoadStores();
             LoadEnvironments();
@@ -738,6 +738,8 @@ namespace BrowserLauncher
                                 break;
                             case 4:
                                 cbCountry.SelectedIndex = cbCountry.FindStringExact(temp);
+                                cbParameters.SelectedIndex = -1;
+                                cbParameters.ResetText();
                                 break;
                             case 5:
                                 if (cbParameters.FindStringExact(temp) == -1) { cbParameters.Text = temp; }
